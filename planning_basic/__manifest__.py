@@ -29,6 +29,7 @@
     "depends" : [
         'base',
         'industry_fsm',
+        'industry_fsm_sale',
         'base_address_extended',
     ],
     "demo" : [],
