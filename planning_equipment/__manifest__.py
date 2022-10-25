@@ -20,19 +20,21 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Planning Equipment",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "",
     "depends" : [
         'base',
-        'crm'
+        'maintenance',
+        'planning_basic',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/resource.xml',
+        #'security/ir.model.access.csv',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],

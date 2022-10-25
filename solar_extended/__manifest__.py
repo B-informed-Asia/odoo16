@@ -20,19 +20,26 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Solar Extended",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "category",
     "depends" : [
         'base',
-        'crm'
+        'sale_management',
+        'crm_order',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/sale.xml',
+        'views/roof.xml',
+        'views/res_partner.xml',
+        'views/res_company.xml',
+        'report/sale_report.xml',
+        'report/sale_solar_report_templates.xml',
+        'security/ir.model.access.csv',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],

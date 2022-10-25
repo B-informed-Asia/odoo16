@@ -20,19 +20,19 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Custom FSM reports",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "Field service",
     "depends" : [
-        'base',
-        'crm'
+        'industry_fsm_report',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/project_worksheet_template_view.xml',
+        'data/fsm_worksheets.xml',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],
@@ -40,6 +40,7 @@
     'active' : False,
     "price": "0.0",
     "currency": "EUR",
+    "uninstall_hook": "uninstall_hook", #
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

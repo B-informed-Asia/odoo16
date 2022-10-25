@@ -20,19 +20,23 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Pebble FSM Worksheet Templates",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "",
     "depends" : [
         'base',
-        'crm'
+        'industry_fsm_custom_by_module',
+        'solar_extended',
+        'pebble_sale_other_pictures',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/fsm_worksheets_view.xml',
+        'security/ir.model.access.csv',
+        'data/fsm_worksheets_template.xml',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],
@@ -40,6 +44,7 @@
     'active' : False,
     "price": "0.0",
     "currency": "EUR",
+    'post_init_hook': '_update_partners_with_default_data',
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

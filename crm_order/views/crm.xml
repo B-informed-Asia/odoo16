@@ -16,7 +16,7 @@
                     <page string="Order">
                         <group>
                             <group>
-                                <field name="is_true" nolabel="1"/>
+                                <field colspan="2" name="is_true" nolabel="1"/>
                                 <field name="datum_aanvraag"/>
                                 <field name="datum_opname_verkoper"/>
                                 <field name="datum_eerste_offerte"/>

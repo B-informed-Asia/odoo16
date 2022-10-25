@@ -20,19 +20,24 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Automatic Workflow Sales Planning",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "sale",
     "depends" : [
         'base',
-        'crm'
+        'sale_management',
+        'purchase',
+        'industry_fsm',
+        'maintenance',
+        'stock',
+        'sale_project',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/sale.xml',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],

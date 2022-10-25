@@ -20,19 +20,20 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Sale Other Pictures",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "sale",
     "depends" : [
         'base',
-        'crm'
+        'sale_management',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/sale.xml',
+        'security/ir.model.access.csv',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],

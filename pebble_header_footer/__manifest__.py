@@ -20,22 +20,22 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Pebble Header Footer",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "Purchase",
     "depends" : [
         'base',
-        'crm'
+        'web',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/layout.xml',
     ],
     "qweb" : [],
-    "images": ['static/description/banner.png'],
+    "images": [],
     'installable' : True,
     'active' : False,
     "price": "0.0",

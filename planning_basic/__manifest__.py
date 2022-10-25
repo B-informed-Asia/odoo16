@@ -20,19 +20,21 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Planning Basic",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "",
     "depends" : [
         'base',
-        'crm'
+        'industry_fsm',
+        'base_address_extended',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/resource.xml',
+        'security/ir.model.access.csv',
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],

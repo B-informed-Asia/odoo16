@@ -20,19 +20,20 @@
 #################################################################################
 
 {
-    "name" : "CRM Order",
+    "name" : "Automatic Workflow Invoice",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "crm",
+    "category" : "invoice",
     "depends" : [
         'base',
-        'crm'
+        'account',
     ],
     "demo" : [],
     "data" : [
-        'views/crm.xml',
+        'views/invoice.xml',
+        'security/ir.model.access.csv'
     ],
     "qweb" : [],
     "images": ['static/description/banner.png'],
