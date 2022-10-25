@@ -28,7 +28,8 @@
     "category" : "crm",
     "depends" : [
         'base',
-        'crm'
+        'crm',
+        'sale_crm',
     ],
     "demo" : [],
     "data" : [
