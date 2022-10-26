@@ -19,9 +19,9 @@
                 <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']" position="replace"> 
                     <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
                         <div class="text-center" style="border-top: 1px solid black; font-size: 13px !important;">
-                            <t t-if="company.street"><span t-field="company.street"/>, </t>
+                            <!--<t t-if="company.street"><span t-field="company.street"/>, </t>
                             <t t-if="company.zip"><span t-field="company.zip"/> </t>
-                            <t t-if="company.city"><span t-field="company.city"/>  |  </t>
+                            <t t-if="company.city"><span t-field="company.city"/>  |  </t>-->
                             <t t-if="company.phone"> Tel: <span t-field="company.phone"/> | </t>
                             <t t-if="company.email"> Email: <span t-field="company.email"/> | </t>
                             <t t-if="company.website"><span t-field="company.website"/></t>

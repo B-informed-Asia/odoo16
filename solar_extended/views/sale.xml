@@ -28,7 +28,7 @@
                         <group></group>
                       </group>
                       <label for="html_sale_conditions" string="Condities"/>
-                      <field name="html_sale_conditions" nolabel="1" force_save="1" readonly="0"/>
+                      <field colspan="2" name="html_sale_conditions" nolabel="1" force_save="1" readonly="0"/>
                     </page>
                 </xpath>
                 <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">

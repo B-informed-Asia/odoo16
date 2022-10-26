@@ -77,11 +77,14 @@
             </t>
 
 
-        <div class="page" style="font-size: 16px !important;">
+        <div class="page" style="font-size: 14px !important;">
           <!-- INSIDE CSS-->
           <style type="text/css">
             <![CDATA[
             .pebble_header {
+                  font-size: 22px;
+              }
+            .pebble_tittle {
                   font-size: 22px;
               }
               ]]>
@@ -91,7 +94,7 @@
 
 
             <div class="oe_structure"/>
-            <h2 class="mt16">
+            <h2 class="pebble_tittle">
                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                     <span t-if="doc.state not in ['draft','sent']">Verkooporder # </span>
                     <span t-if="doc.state in ['draft','sent']">Offerte # </span>
@@ -102,122 +105,123 @@
                 <span t-field="doc.name"/>
             </h2>
 
-            <div class="row mt32 mb32" id="informations">
-                <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
-                    <strong>Uw referentie:</strong>
+            <div class="row mt-2 mb-2" id="informations">
+                <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
+                    <strong>Referentie:</strong>
                     <p class="m-0" t-field="doc.client_order_ref"/>
                 </div>
-                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
+                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto col-3 mw-100 mb-2" name="informations_date">
                     <strong>Order datum:</strong>
                     <p class="m-0" t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                 </div>
-                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2">
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">
                     <strong>Offere datum:</strong>
                     <p class="m-0" t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                 </div>
-                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto mw-100 mb-2" name="expiration_date">
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-100 mb-2" name="expiration_date">
                     <strong>Vervaldatum:</strong>
                     <p class="m-0" t-field="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                 </div>
                 <div t-if="doc.user_id.name" class="col-2">
                     <strong>Verkoper:</strong><br/>
-                    <span  t-field="doc.user_id"/><br/>
-                    <span  t-field="doc.user_id.mobile"/>
+                    <span t-field="doc.user_id"/><br/>
+                    <span t-field="doc.user_id.mobile"/>
                 </div>
             </div>
 
             <!-- Loop the photos and obstacles and the set it to true, then show the this part. -->
             <!-- When no pictures then do not print the below part-->
             <div>
-              <div class="pebble_header" style="border-bottom: 1px solid black;">
+              <div class="pebble_header p-1" style="border-bottom: 1px solid black;">
                 <b>Beschikbare dakoppervlak(ken)</b>
               </div>
               <!-- Show only the roofs that have the checkbox printed on true-->
               <div style="page-break-inside:avoid;">
-              <t t-foreach="doc.roofdata_line_ids" t-as="line">
-                <div class="row mt8 mb8" t-if="line.is_printed == True">
-                  <div class="col-3 text-left">
-                    Omschrijving: <br/>
-                    Dak type: <br/>
-                    Dak afmetingen: <br/>
-                    Kompasrichting: <br/>
-                    Hellingsgraad: <br/>
-                    Dakbedekking:  <br/>
-                    Goothoogte: <br/>
+                <t t-foreach="doc.roofdata_line_ids" t-as="line">
+                  <div class="row" t-if="line.is_printed == True">
+                    <div class="col-3 text-left">
+                      <span class="p-1"> Omschrijving: </span><br/>
+                      <span class="p-1"> Dak type: </span><br/>
+                      <span class="p-1"> Dak afmetingen: </span><br/>
+                      <span class="p-1"> Kompasrichting: </span><br/>
+                      <span class="p-1"> Hellingsgraad: </span><br/>
+                      <span class="p-1"> Dakbedekking:  </span><br/>
+                      <span class="p-1"> Goothoogte: </span><br/>
+                    </div>
+                    <div class="col-3 text-left">
+                      <span class="p-1" t-field="line.description"/><br/>
+                      <span class="p-1" t-field="line.rooftype"/><br/>
+                      <span class="p-1">L <span t-field="line.roof_length"/> x B <span t-field="line.roof_width"/> mtr </span><br/>
+                      <span class="p-1" t-field="line.compass_id"/><br/>
+                      <span class="p-1" t-field="line.roofslope_id"/><br/>
+                      <span class="p-1" t-field="line.roofcover"/><br/>
+                      <span class="p-1" t-field="line.roofheight"/> mtr<br/>
+                    </div>
+                    <div class="col-6 text-left">
+                      <img t-if="line.photo_1" t-att-src="image_data_uri(line.photo_1)" style="max-width: 500px;"/>
+                    </div>
                   </div>
-                  <div class="col-3 text-left">
-                    <span t-field="line.description"/><br/>
-                    <span t-field="line.rooftype"/><br/>
-                    L <span t-field="line.roof_length"/> x B <span t-field="line.roof_width"/> mtr<br/>
-                    <span t-field="line.compass_id"/><br/>
-                    <span t-field="line.roofslope_id"/><br/>
-                    <span t-field="line.roofcover"/><br/>
-                    <span t-field="line.roofheight"/> mtr<br/>
-                  </div>
-                  <div class="col-6 text-left">
-                    <img t-if="line.photo_1" t-att-src="image_data_uri(line.photo_1)" style="max-width: 500px;"/>
-                  </div>
-                </div>
-              </t>
+                </t>
               </div>
               <!-- Show only the obstacles that have the checkbox printed on true-->
               <br/>
               <div style="page-break-inside:avoid;">
-              <t t-foreach="doc.obstacles_line_ids" t-as="line">
-                <div class="row mt8 mb8" t-if="line.is_printed == True">
-                  <div class="col-6 text-left">
-                    <span t-field="line.description"/><br/>
+                <t t-foreach="doc.obstacles_line_ids" t-as="line">
+                  <div class="row mt-4 mb-4" t-if="line.is_printed == True">
+                    <div class="col-6 text-left">
+                      <span t-field="line.description"/><br/>
+                    </div>
+                    <div class="col-6 text-left">
+                      <img t-if="line.photo" t-att-src="image_data_uri(line.photo)" style="max-width: 500px;"/>
+                    </div>
                   </div>
-                  <div class="col-6 text-left">
-                    <img t-if="line.photo" t-att-src="image_data_uri(line.photo)" style="max-width: 500px;"/>
-                  </div>
-                </div>
-              </t>
+                </t>
               </div>
 
               <div style="page-break-inside:avoid;">
-              <div class="pebble_header" style="border-bottom: 1px solid black;">
-                <b>Verbruiksgegevens (op jaarbasis)</b>
-              </div>
-              <div class="row mt8 mb8">
-                <div class="col-4 text-left">
-                  Energieverbruik <br/>
-                  Gewenste Productie <br/>
-                  Huidige Electraprijs <br/>
+                <div class="pebble_header p-1" style="border-bottom: 1px solid black;">
+                  <b>Verbruiksgegevens (op jaarbasis)</b>
                 </div>
-                <div class="col-2 text-left">
-                  ca. <br/>
-                  ca. <br/>
-                  ca. <br/>
+                <div class="row mt-2 mb-2">
+                  <div class="col-4 text-left">
+                    <span class="p-1"> Energieverbruik </span><br/>
+                    <span class="p-1"> Gewenste Productie </span><br/>
+                    <span class="p-1"> Huidige Electraprijs </span><br/>
+                  </div>
+                  <div class="col-2 text-left">
+                    <span class="p-1"> ca. </span><br/>
+                    <span class="p-1"> ca. </span><br/>
+                    <span class="p-1"> ca. </span><br/>
+                  </div>
+                  <div class="col-6 text-left">
+                    <span class="p-1"><span t-esc="'%.0f'% doc.powercon"/>  kWh</span><br/>
+                    <span class="p-1"><span t-esc="'%.0f'% doc.desireprod"/> kWh</span><br/>
+                    <span class="p-1"><span t-field="doc.energycost"/> Per kWh</span><br/>
+                  </div>
                 </div>
-                <div class="col-6 text-left">
-                  <span><span t-esc="'%.0f'% doc.powercon"/>  kWh</span><br/>
-                  <span><span t-esc="'%.0f'% doc.desireprod"/> kWh</span><br/>
-                  <span><span t-field="doc.energycost"/> Per kWh</span><br/>
+                <div class="pebble_header p-1" style="border-bottom: 1px solid black;">
+                  <b>Prognose van het systeem (op jaarbasis)</b>
                 </div>
-              </div>
-              <div class="pebble_header" style="border-bottom: 1px solid black;">
-                <b>Prognose van het systeem (op jaarbasis)</b>
-              </div>
-              <div class="row mt8 mb8">
-                <div class="col-4 text-left">
-                  CO₂ reductie <br/>
-                  Verwachtte opbrengst<br/>
-                  Financiële besparing<br/>
-                </div>
-                <div class="col-2 text-left">
-                      <br/>
-                  ca. <br/>
-                  ca. <br/>
-                </div>
-                <div class="col-6 text-left">
-                  <span t-esc="'%.0f'% doc.co2reduction"/> kg<br/>
-                  <span><span t-esc="'%.0f'% doc.elecprod"/> kWh</span><br/>
-                  <span><span t-field="doc.savings"/></span><br/>
+                <div class="row mt-2 mb-2">
+                  <div class="col-4 text-left">
+                    <span class="p-1"> CO₂ reductie </span><br/>
+                    <span class="p-1"> Verwachtte opbrengst </span><br/>
+                    <span class="p-1"> Financiële besparing </span><br/>
+                  </div>
+                  <div class="col-2 text-left">
+                    <span class="p-1"/><br/>
+                    <span class="p-1"> ca. </span><br/>
+                    <span class="p-1"> ca. </span><br/>
+                  </div>
+                  <div class="col-6 p-1 text-left">
+                    <span class="p-1"><span t-esc="'%.0f'% doc.co2reduction"/> kg </span><br/>
+                    <span class="p-1"><span t-esc="'%.0f'% doc.elecprod"/> kWh </span><br/>
+                    <span class="p-1" t-field="doc.savings"/><br/>
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
+
 
             <!-- Hard page-break --> 
             <div style="page-break-after:always;"/>
@@ -225,10 +229,10 @@
             <t t-if="doc.plan">
 	            <div style="page-break-inside:avoid;">
 	              <!-- legplan -->
-	              <div class="pebble_header" style="border-bottom: 1px solid black;">
+	              <div class="pebble_header p-1" style="border-bottom: 1px solid black;">
 	                <b>Legplan</b>
 	              </div>
-	              <div class="row mt8 mb8">
+	              <div class="row mt-4 mb-4">
 	                <div class="col-12  text-center">
                     <!-- The wish is to make the legplan an pagin big picture-->
 	                   <img t-if="doc.plan" t-att-src="image_data_uri(doc.plan)" style="max-height: 1500px; max-width: 1000px;"/>
@@ -237,14 +241,14 @@
 	            </div>
               <!-- Hard page-break --> 
               <div style="page-break-after:always;"/>
-        	</t>
+        	  </t>
 
 
           <!-- TODO What to do with this part ???? -->
             <!-- Make it connected to the res.company-->
             <t t-if="doc.company_id.b2c_text">
               <div style="page-break-inside:avoid;">
-                <div class="row mt8 mb8">
+                <div class="row mt-4 mb-4">
                   <div class="col-12">
                     <span t-if="doc.company_id.b2c_text" t-raw="doc.company_id.b2c_text"/>
                     <br/>
@@ -260,7 +264,7 @@
 
             <div style="page-break-inside:avoid;">
               <div style="border-bottom: 1px solid black;"/>
-              <div class="row mt8 mb8">
+              <div class="row mt-1 mb-1">
                   <div class="col-9 text-left pebble_header">
                         <span >Product</span>
                     </div>
@@ -276,7 +280,7 @@
                       <t t-if="line.product_id.show_in_b2c == True">
                         <div style="border-bottom: 1px solid grey;"/>
                         <!-- display the name, qty and uom-->
-                          <div class="row mt8 mb8">
+                          <div class="row mt-4 mb-4">
                           <div class="col-9 text-left">
                               <span t-field="line.name"/>
                             </div>
@@ -289,7 +293,7 @@
                           <!-- Additional information pulled from the product-->
                             <div style="border-bottom: 1px solid grey;"/>
                             <!-- 1 row, 2 columns -->
-                            <div class="row mt8 mb8">
+                            <div class="row mt-4 mb-4">
                           <div class="col-9 text-left">
                               <span t-if="line.product_id.html_product_details" t-raw="line.product_id.html_product_details"/>
                             </div>
@@ -309,7 +313,7 @@
                       <t t-if="line.product_id.show_in_b2c != True">
                         <!--<div style="border-bottom: 1px solid grey;"/>-->
                         <!-- display the name, qty and uom-->
-                          <div class="row mt8 mb8">
+                          <div class="row mt-4 mb-4">
                           <div class="col-9 text-left">
                               <span t-field="line.name"/>
                             </div>
@@ -341,7 +345,7 @@
           </div>
 
           <div style="page-break-inside:avoid;">
-            <div class="row mt8 mb8">
+            <div class="row mt-4 mb4">
                   <div class="col-12 text-left pebble_header">
                       <span ><b>Betalingsconditie's:</b></span>
                   </div>
@@ -363,9 +367,9 @@
           </div>
 
           <div id="total" class="row" name="total">
-            <div t-attf-class="#{'col-8' if report_type != 'html' else 'col-sm-4 col-md-8'} ml-auto">
+            <div t-attf-class="#{'col-8' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
               <!-- <table class="table table-sm"> -->
-              <table class="table-sm" style="width: 100%;">
+              <table class="table-sm table-borderless" style="width: 100%;">
                     <!--<tr class="border-black o_subtotal" style="">-->
 
                     <tr>
@@ -434,14 +438,14 @@
 
                 </table>
               
-              <div class="row mt8 mb8">
+              <div class="row mt-4 mb-4">
                   <div class="col-12 text-left">
                       <span >Terugverdientijd conform <span t-field="doc.energycost"/> per kWh is <span t-field="doc.roi_years"/> jaar</span>
                   </div>
               </div>
 
               <t t-if="doc.vat_reduction_type == 'yes'">
-                <div class="row mt8 mb8">
+                <div class="row mt-4 mb-4">
                     <div class="col-12 text-left">
                         <span t-if="doc.company_id.vat_disclamer" t-raw="doc.company_id.vat_disclamer"/>
                     </div>
@@ -457,7 +461,7 @@
           <br/>
             <div style="page-break-inside:avoid;">
               <!-- Signature part -->
-                <div class="row mt8 mb8">
+                <div class="row mt-4 mb-4">
                     <div class="col-8">Met vriendelijke groet,
                     </div>
                     <div class="col-4">Voor akkoord: </div>
@@ -465,13 +469,13 @@
                 <br/>
                 <br/>
 
-                <div class="row mt8 mb8">
+                <div class="row mt-4 mb-4">
                     <div class="col-8">
                     </div>
                     <div class="col-4"><span t-field="doc.partner_id.city"/> d.d...............</div>
                 </div>
 
-				<div class="row mt8 mb8">
+				<div class="row mt-4 mb-4">
 					<div class="col-8">Adviesteam <span t-field="doc.company_id.name"/>
 					</div>
 					<!--TODO Alignment -->
@@ -493,7 +497,7 @@
         <!-- OPTION PRODUCT -->
         <div style="page-break-inside:avoid;" t-if="doc.sale_order_option_ids">
           <div>
-          <div class="row mt8 mb8">
+          <div class="row mt-4 mb-4">
               <div class="col-12 text-left pebble_header">
                   <span ><b>Extra Opties:</b></span>
               </div>
@@ -504,7 +508,7 @@
           <t t-set="total_amount" t-value="0"/>
           <t t-foreach="doc.sale_order_option_ids" t-as="option">
               <!-- display the name, qty and uom-->
-            <div class="row mt8 mb8">
+            <div class="row mt-4 mb-4">
               <div class="col-8 text-left">
                 <span style="font-size:22px"> ☐ </span>
                 <span t-field="option.name"/>
@@ -525,7 +529,7 @@
         <br/>
 
         <div style="page-break-inside:avoid;">
-          <div class="row mt8 mb8">
+          <div class="row mt-4 mb-4">
             <div class="col-12">
               <span t-if="doc.company_id.extra_option_text" t-raw="doc.company_id.extra_option_text"/>
               <br/>
@@ -535,7 +539,7 @@
 
         <div style="page-break-inside:avoid;">
           <!-- Signature part -->
-            <div class="row mt8 mb8">
+            <div class="row mt-4 mb-4">
                 <div class="col-8">Met vriendelijke groet,
                 </div>
                 <div class="col-4">Voor akkoord: </div>
@@ -543,13 +547,13 @@
             <br/>
             <br/>
 
-            <div class="row mt8 mb8">
+            <div class="row mt-4 mb-4">
                 <div class="col-8">
                 </div>
                 <div class="col-4"><span t-field="doc.partner_id.city"/> d.d...............</div>
             </div>
 
-            <div class="row mt8 mb8">
+            <div class="row mt-4 mb-4">
               <div class="col-8">Adviesteam <span t-field="doc.company_id.name"/>
               </div>
               <!--TODO Alignment -->
@@ -590,7 +594,7 @@
     <div class="page">
       <div class="oe_structure"/>
 
-      <h2 class="mt16">
+      <h2 class="mt-8">
         <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
             <span t-if="doc.state not in ['draft','sent']">Verkooporder # </span>
             <span t-if="doc.state in ['draft','sent']">Offerte # </span>
@@ -601,24 +605,24 @@
         <span t-field="doc.name"/>
       </h2>
 
-      <div class="row mt32 mb32" id="informations">
-        <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
+      <div class="row mt-8 mb-8" id="informations">
+        <div t-if="doc.client_order_ref"  class="col-auto col-3 mw-100 mb-2" name="informations_reference">
           <strong>Uw referentie:</strong>
           <p class="m-0" t-field="doc.client_order_ref"/>
         </div>
-        <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
+        <div t-if="doc.date_order and doc.state not in ['draft','sent']"  class="col-auto col-3 mw-100 mb-2" name="informations_date">
           <strong>Order datum:</strong>
           <p class="m-0" t-field="doc.date_order"/>
         </div>
-        <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2">
+        <div t-if="doc.date_order and doc.state in ['draft','sent']"  class="col-auto col-3 mw-100 mb-2" >
           <strong>Offere datum:</strong>
           <p class="m-0" t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
         </div>
-        <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto mw-100 mb-2" name="expiration_date">
+        <div t-if="doc.validity_date and doc.state in ['draft', 'sent']"  class="col-auto col-3 mw-100 mb-2"  name="expiration_date">
           <strong>Vervaldatum:</strong>
           <p class="m-0" t-field="doc.validity_date"/>
         </div>
-        <div t-if="doc.user_id.name" class="col-auto mw-100 mb-2">
+        <div t-if="doc.user_id.name"  class="col-auto col-3 mw-100 mb-2">
           <strong>Verkoper:</strong>
           <p class="m-0" t-field="doc.user_id"/>
         </div>
@@ -714,7 +718,7 @@
         </div>
       </div>
 
-      <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
+      <div t-if="doc.signature" class="mt-4 ml-4 mr-4" name="signature">
         <div class="offset-8">
           <strong>Handtekening</strong>
         </div>

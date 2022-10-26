@@ -9,15 +9,15 @@
                 <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
                     <page name="b2c_fixed_text" string="B2C Verkooporder">
                         <group string="B2C Verkooporder">
-                            <field name="b2c_text" nolabel="1"/>
+                            <field colspan="2" name="b2c_text" nolabel="1"/>
                         </group>
                     </page>
                     <page name="page_extra_option_text" string="Extra Opties Tekst">
                         <group string="Extra Opties Tekst">
-                            <field name="extra_option_text" nolabel="1"/>
+                            <field colspan="2"  name="extra_option_text" nolabel="1"/>
                         </group>
                         <group string="BTW Disclamer">
-                            <field name="vat_disclamer" nolabel="1"/>
+                            <field colspan="2"  name="vat_disclamer" nolabel="1"/>
                         </group>
                     </page>
                 </xpath>
