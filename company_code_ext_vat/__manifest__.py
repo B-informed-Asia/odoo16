@@ -2,7 +2,7 @@
 #################################################################################
 #
 #    Odoo, Open Source Management Solution
-#    Copyright (C) 2017 B-informed Asia <info@B-informed.id>
+#    Copyright (C) 2020 B-informed Asia <info@B-informed.id>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,28 +20,23 @@
 #################################################################################
 
 {
-    "name" : "Planning Basic",
+    "name" : "Tax name with company code",
     "version" : "16.0.0.1",
     'license': 'AGPL-3',
     "author" : "B-informed Asia",
     "website": "http://www.b-informed.id",
-    "category" : "",
+    "category" : "account",
     "depends" : [
         'base',
-        'industry_fsm',
-        'industry_fsm_sale',
-        #'base_address_extended',
+        'company_code_ext',
     ],
     "demo" : [],
-    "data" : [
-        'views/resource.xml',
-        'security/ir.model.access.csv',
-    ],
+    "data" : [],
     "qweb" : [],
     "images": ['static/description/banner.png'],
     'installable' : True,
     'active' : False,
-    "price": "0.0",
+    "price": "15.0",
     "currency": "EUR",
 }
 
