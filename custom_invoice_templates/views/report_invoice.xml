@@ -9,7 +9,7 @@
 	    <xpath expr="//p[@name='incoterm']" position="replace">
 	    </xpath>
 
-	    <xpath expr="//div[@name='note']" position="replace">
+	    <xpath expr="//p[@name='note']" position="replace">
 	    </xpath>
 
 	    <xpath expr="//div[@id='qrcode']" position="replace">
